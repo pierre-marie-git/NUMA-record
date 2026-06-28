@@ -5,6 +5,9 @@ import {
   sendStopRecording,
 } from "../utils/recorderMessaging";
 import { getBitrates, getResolutionForQuality } from "./recorderConfig";
+import CapUploader from "./capUploader";
+// Keep BunnyTusUploader available behind a flag for emergency rollback.
+// In production builds this branch is dead-code-eliminated.
 import BunnyTusUploader from "./bunnyTusUploader";
 import localforage from "localforage";
 import { createVideoProject } from "./createVideoProject";
@@ -47,6 +50,11 @@ localforage.config({
 });
 
 const API_BASE = process.env.SCREENITY_API_BASE_URL;
+const CAP_API = process.env.CAP_API_BASE_URL;
+// Feature flag: when true (default for NUMA Record builds), use the Cap
+// uploader instead of Bunny TUS. Set NUMA_USE_BUNNY_UPLOADER=true to
+// temporarily fall back to the original Screenity uploader.
+const USE_CAP_UPLOADER = process.env.NUMA_USE_BUNNY_UPLOADER !== "true";
 // Enable the start-flow logs unconditionally for dev builds so the
 // startup timeline is visible in the cloudrecorder tab console without
 // needing to set `window.SCREENITY_DEBUG_RECORDER = true` first. Prod
@@ -3245,7 +3253,11 @@ const CloudRecorder = () => {
       };
 
       if (screenStream.current) {
-        screenUploader.current = new BunnyTusUploader({
+        screenUploader.current = USE_CAP_UPLOADER
+
+          ? new CapUploader(
+
+          : new BunnyTusUploader({
           sessionId,
           trackType: "screen",
           container: trackContainers.screen,
@@ -3304,7 +3316,11 @@ const CloudRecorder = () => {
       }
 
       if (cameraStream.current) {
-        cameraUploader.current = new BunnyTusUploader({
+        cameraUploader.current = USE_CAP_UPLOADER
+
+          ? new CapUploader(
+
+          : new BunnyTusUploader({
           sessionId,
           trackType: "camera",
           container: trackContainers.camera,
@@ -3364,7 +3380,11 @@ const CloudRecorder = () => {
         // Audio uploader failures are non-fatal; recording proceeds
         // without an audio track if init fails (mic supplementary).
         try {
-          audioUploader.current = new BunnyTusUploader({
+          audioUploader.current = USE_CAP_UPLOADER
+
+            ? new CapUploader(
+
+            : new BunnyTusUploader({
             sessionId,
             trackType: "audio",
             container: trackContainers.audio,
