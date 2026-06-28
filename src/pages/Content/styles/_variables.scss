@@ -24,18 +24,22 @@
   "chrome-extension://__MSG_@@extension_id__/assets/fonts/GloriaHallelujah-Regular"
 );
 
-/* Colors */
-$color-background: #fff;
-$color-light-grey: #f6f7fb;
-$color-primary: #3080f8;
-$color-border: #e8e8e8;
-$color-text-contrast: #fff;
-$color-text-primary: #29292f;
+/* Colors — NUMA Brand Guidelines 2026 */
+$color-background: #ffffff;       /* Ice Blue / White — fonds neutres */
+$color-light-grey: #f4f8fb;       /* Ice Blue pale */
+$color-primary: #000c2c;          /* Midnight Blue — boutons, éléments forts */
+$color-accent: #ffc629;           /* NUMA Yellow — highlights, accents */
+$color-cornflower: #5a78f5;       /* Cornflower — éléments interactifs digitaux */
+$color-silver: #e1ebf0;           /* Silver — bordures, fonds désactivés */
+$color-border: #e1ebf0;
+$color-text-contrast: #ffffff;
+$color-text-primary: #1a1a1a;     /* proche Black */
 $color-text-secondary: #6e7684;
-$color-red: #d2234d;
+$color-red: #c0392b;              /* rouge désaturé — erreurs (pas vert/orange) */
 $color-red-light: #faf0f4;
-$color-primary-transparent: rgba(48, 128, 248, 0.1);
-$color-icon: #9797a4;
+$color-primary-transparent: rgba(0, 12, 44, 0.08);
+$color-accent-transparent: rgba(255, 198, 41, 0.15);
+$color-icon: #5a78f5;              /* Cornflower pour icônes (charte NUMA §9) */
 
 /* Font */
 //$font-size-normal: 0.875rem;
@@ -72,19 +76,13 @@ $container-shadow: drop-shadow(0px 4px 100px rgba(0, 0, 0, 0.35));
 $container-shadow-focus: 2px 2px 10px rgba(0, 0, 0, 0.1);
 $container-soft-shadow: 0 4px 20px rgb(38 38 52 / 8%);
 
-/* Gradients */
-$gradient-primary: radial-gradient(
-  117.41% 117.78% at 35.44% 0%,
-  #2baef8 23.13%,
-  #3582f6 46.35%,
-  #486def 74.48%,
-  #7b9aea 100%
-);
-$gradient-shadow-primary: drop-shadow(0px 4px 20px rgba(86, 123, 218, 0.5));
+/* Gradients — INTERDITS dans la charte NUMA (§11) */
+$gradient-primary: $color-primary;
+$gradient-shadow-primary: drop-shadow(0px 4px 20px rgba(0, 12, 44, 0.5));
 
 /* Events */
-$focus-border: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
-$focus-inner-border: inset 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+$focus-border: 0px 0px 0px 2px rgba(0, 12, 44, 0.5);
+$focus-inner-border: inset 0px 0px 0px 2px rgba(0, 12, 44, 0.5);
 
 /* Z-index */
 $z-index-max: 99999999999;

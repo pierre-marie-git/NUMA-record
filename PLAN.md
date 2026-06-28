@@ -118,18 +118,46 @@
 - **From-scratch extension** : 2-4 jours de plus, valeur marginale vs fork Screenity
 - **SaaS type Loom/Vimeo** : à l'opposé de la demande (self-hosted)
 
-## 10. Décisions à prendre
+## 10. Décisions finales (validées par PM 2026-06-28 09:56)
 
-À clarifier avec PM avant étape 6 :
+| # | Question | Décision |
+|---|---|---|
+| 1 | Domaine final Cap | **`cap.portal.numa.co`** (sous-domaine de `portal.numa.co`) |
+| 2 | S3 cible | **S3 Ionos** (PM fournit l'adresse) |
+| 3 | Auth coachs | **Google OAuth avec whitelist `@numa.co`** |
+| 4 | Nom app extension | **NUMA Record** (confirmé) |
+| 5 | Description courte (132 chars max) | À finaliser — proposition : *"NUMA Record lets NUMA coaches capture, edit and share screen recordings with participants via the secure NUMA Cap platform."* |
+| 6 | Catégorie Chrome Web Store | **Productivity** |
+| 7 | Politique de rétention | **Pas de limite** (stockage à gérer côté Ionos) |
+| 8 | Fonts web | **Inter** (substitut libre à Helvetica Neue) + **Montserrat** pour titres |
+| 9 | Couleur primaire UI | **Midnight Blue `#000C2C`** |
+| 10 | Page setup | **Custom NUMA, light au début**, à itérer |
 
-1. **Domaine final** : `cap.numa.co` ou autre ?
-2. **S3 cible** : AWS S3 / Cloudflare R2 / Backblaze B2 / MinIO self-host ?
-3. **Stockage vidéos** : bucket dédié `numa-videos` ou existant ?
-4. **Auth coachs** : Magic Link email / Google OAuth / credentials ?
-5. **Sous-domaine pour share pages** : `cap.numa.co/v/...` ou autre pattern ?
-6. **Branding** : nom app extension ("NUMA Record" / "NUMA Cast" / autre) ?
-7. **Politique de rétention** : suppression auto après X jours ?
-8. **Visibilité des vidéos** : par défaut public (avec lien) ou privé par défaut ?
+## 10b. Assets logo NUMA
+
+Téléchargés depuis `https://cloud.numa.co/Logos/` (accès public) :
+
+- `LOGO_NUMA_black.png` (1547×529) — logotype complet, fond transparent
+- `LOGO_NUMA_white.png` (774×265) — logotype complet blanc, fond transparent
+- `LOGO_N_black.png` (1504×1640) — symbole N noir, haute résolution, fond transparent
+- `LOGO_N_white.png` (139×185) — symbole N blanc, petit
+
+**Usage prévu** :
+- `icon-34.png` et `icon-128.png` (toolbar + page extensions Chrome) → depuis `LOGO_N_black.png`
+- Logotype complet (noir ou blanc) → dans la popup de l'extension + pages d'auth sur fond Midnight Blue
+
+## 10c. Palette NUMA appliquée à l'extension
+
+```scss
+$color-primary:      #000C2C;  /* Midnight Blue — boutons, éléments forts */
+$color-accent:       #FFC629;  /* NUMA Yellow — highlights, accents */
+$color-cornflower:   #5A78F5;  /* Cornflower — icônes, éléments interactifs digitaux */
+$color-background:   #FFFFFF;  /* Ice Blue / White — fonds neutres */
+$color-text:         #1A1A1A;  /* proche Black pour texte */
+$color-text-muted:   #6E7684;  /* gris moyen pour sous-titres */
+$color-border:       #E1EBF0;  /* Silver — bordures discrètes */
+$color-error:        #C0392B;  /* rouge désaturé — erreurs (pas le vert/orange interdit) */
+```
 
 ## 11. Notes techniques sur l'API Cap
 
