@@ -1,0 +1,25 @@
+NUMA Record — Attribution Notice
+
+NUMA Record is a fork of Screenity by Alyssa X (https://github.com/alyssaxuu/screenity),
+licensed under GNU GPL v3.
+
+Original copyright:
+  Copyright (c) Alyssa X
+
+Fork modifications by NUMA (2026):
+  - Custom branding (NUMA Record name, logo, copy)
+  - Removal of Screenity Pro / Screenity Cloud / Google Drive integration
+  - Replacement of upload target: now uploads to a self-hosted Cap (https://cap.so) backend
+  - Removed analytics, telemetry, and Pro upsell flows
+  - Removed Google OAuth scope, replaced with NUMA-specific auth
+  - Locale additions (fr-FR)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+See the LICENSE file for the full GPL v3 license text.
+
+Upstream project: https://github.com/alyssaxuu/screenity
+NUMA upstream Cap: https://github.com/CapSoftware/Cap
